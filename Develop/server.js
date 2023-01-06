@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path')
 const app = express();
 const fs = require('fs');
+const dbinfo = require('./db/db.json');
 
 app.listen(process.env.PORT);
 
