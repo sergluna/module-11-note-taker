@@ -1,8 +1,15 @@
 const express = require('express');
 
-const PORT = 3001;
-
 const app = express();
+
+app.listen(process.env.PORT);
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+
+app.listen(port);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,10 +17,6 @@ app.use(express.static('public'));
 
 require('./routes/htmlRoutes')(app);
 require('./routes/apiRoutes')(app);
-
-app.listen(PORT, function () {
-    console.log('Listening on port 3001');
-});
 
 app.get('/api/notes', (req, res) => {
     // Inform the client
